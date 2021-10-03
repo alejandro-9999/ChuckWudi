@@ -1,13 +1,15 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import SignInScreen from '../components/main/main';
-
+import store from '../Redux/store';
+import { Provider } from 'react-redux';
 
 const Home: NextPage = () => {
   return (
     <div>
-      <SignInScreen/>
+      <Provider store={store}>
+        <SignInScreen/>
+      </Provider>
     </div>
   )
 }
