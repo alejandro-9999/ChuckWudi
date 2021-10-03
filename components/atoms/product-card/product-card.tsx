@@ -6,7 +6,11 @@ import tw from "tailwind-styled-components/dist/tailwind";
 import styled from "styled-components";
 
 
-const ProductCardHeaderBase = styled.div `
+const _ProductCard  = tw.div`
+
+`;
+
+const ProductCardHeaderBase = styled.div`
   width: 260px;
   height: 130px;
 `;
@@ -15,39 +19,103 @@ const ProductCardHeader = tw(ProductCardHeaderBase)`
   relative
 `;
 
+const ProductCardImage = styled.img`
+  border-radius: 15px;
+  flex: 1;
+  max-width: 100%;
+  width: 260px;
+  height: 130px;
+  object-fit: cover;
+  position: absolute;
+`;
 
-const ProductCard:React.FC<Product> = (props:Product) => {
+const ProductCardTimeBase = styled.div`
+  height: 35px;
+  width: 80px;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  opacity: 90%;
+  align-items: center;
+  border-bottom-left-radius: 15px;
+  border-top-right-radius: 15px;
+`;
+
+const ProductCardTime = tw(ProductCardTimeBase)`
+  bg-gray
+  pt-2
+  h1{
+    
+    font-semibold
+    text-xs
+  }
+  span{
+    font-thin
+    text-xs
+  }
+`;
+
+const ProductCardData = tw.div` 
+  mt-5
+  transition 
+  duration-500 
+  ease-in-out
+  transform 
+  hover:-translate-y-1
+  hover:scale-110
+`;
+
+const ProductCardInfo = tw.div`
+  col-start-1
+  row-start-2
+  sm:pb-16
+  flex
+  items-center 
+  text-sm 
+  font-medium 
+  sm:mb-4
+  & > span{
+    text-black
+    
+  }
+
+
+
+`;
+
+
+
+
+
+const Price = tw.span`
+  text-base 
+  font-normal 
+  mx-2`;
+
+const ProductCard: React.FC<Product> = (props: Product) => {
   return (
-    <div>
+    <_ProductCard>
       <ProductCardHeader>
         <article>
-          <img
-            className="product-card-image"
-            src={props.image}
-          />
+          <ProductCardImage src={props.image} />
         </article>
-        <div className="product-card-time">
-          <h1>
-            {props.time}
-          </h1>
-        </div>
+        <ProductCardTime>
+          <h1>{props.time}</h1>
+        </ProductCardTime>
       </ProductCardHeader>
-      <div className="product-card-data mt-5">
+      <ProductCardData>
         <h1>{props.name}</h1>
-        <div className="product-card-info">
-          <div className="product-container-info">
-            
-            <div className="mr-1">
-                <Image src={IconStart} width={"10px"} height={"10px"}/>
-            </div>
-              <span className="text-black">{props.qualification}</span>
-            
-            <div className="text-base font-normal mx-2">·</div>
-          </div>
-        </div>
-      </div>
-    </div>
+        <ProductCardInfo>
+          
+          <Image src={IconStart} width={"10px"} height={"10px"} />
+          
+          <span>{props.qualification}</span>
+
+          <Price>{"$"+props.price}</Price>
+        </ProductCardInfo>
+      </ProductCardData>
+    </_ProductCard>
   );
-}
+};
 
 export default ProductCard;

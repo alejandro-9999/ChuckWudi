@@ -36,6 +36,7 @@ const AvatarCategory = tw(AvatarCategoryBase)`
 const CategoryName = tw.div`
     text-xs
     font-semibold
+    mt-2
 `;
 
 const CategoryItem:React.FC<Category> = (props:Category) => {

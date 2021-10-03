@@ -1,17 +1,59 @@
 import Image from "next/image";
 import EmojiImage from "../../../assets/icons/emoji_v.png";
 import ShopingSection from "../../molecules/shoping-section/shoping-section";
+import tw from "tailwind-styled-components/dist/tailwind";
+import styled from "styled-components";
 
-export default function ShopingCart() {
+
+
+
+const _ShopingCart = tw.div`
+  w-full
+  col-span-4
+  xl:col-span-1
+  bg-gray
+  pt-10
+  xl:pt-36
+  pl-16
+  pr-16  
+`;
+
+
+const EmojiIcon = styled.div`
+  position: absolute;
+  top :0px;
+  left: 45px;
+`;
+
+
+const EmojiBase = styled.div `
+  width: 130px;
+`;
+
+const Emoji = tw(EmojiBase)`
+  text-left
+  text-3xl
+  font-semibold
+  relative
+`;
+
+
+const ShopingCart:React.FC =  () => {
   return (
-    <div className="shoping-cart">
-      <div className="emoji">
-        <h1>My Order</h1>
-        <div className="emoji-icon">
+    <_ShopingCart>
+      <Emoji>
+        <h1>My</h1> 
+        <EmojiIcon>
           <Image src={EmojiImage} width={"40px"} height={"40px"} />
-        </div>
-      </div>
+        </EmojiIcon>
+        <h1>Order</h1>
+      </Emoji>
       <ShopingSection/>
-    </div>
+    </_ShopingCart>
   );
 }
+
+
+export default ShopingCart;
+
+

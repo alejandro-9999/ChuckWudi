@@ -1,5 +1,7 @@
 import tw from "tailwind-styled-components";
 import ContentPanel from "../../organisms/content-panel/content-panel";
+import ShopingCart from "../../organisms/shoging-cart/shoping-cart";
+
 
 
 const DashboardBody = tw.div`
@@ -10,12 +12,6 @@ const DashboardBody = tw.div`
 `;
 
 
-const ShoppingCartPanel = tw.section `
-    w-full
-    col-span-4 
-    xl:col-span-1 
-    bg-gray
-`;
 
 
 
@@ -23,7 +19,7 @@ const Dashboard: React.FC = () => {
     return (
         <DashboardBody>
             <ContentPanel/>
-            <ShoppingCartPanel/>
+            <ShopingCart/>
         </DashboardBody>
     );
 } 

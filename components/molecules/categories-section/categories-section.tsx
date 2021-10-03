@@ -19,6 +19,8 @@ export default function CategoriesSection() {
   const CategoriesSection = tw.div`
         w-full
         mt-10
+        mb-10
+        sm:mb-0
     `;
 
   const TitleCategoriesSecion = tw.div`
