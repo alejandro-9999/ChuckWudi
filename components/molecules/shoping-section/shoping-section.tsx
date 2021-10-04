@@ -21,8 +21,8 @@ export default function ShopingSection() {
       <ShopingCartTime />
       <ShopingProductsList>
         {
-            products.map((Element) =>(
-                <ProductItemList {...Element}/>
+            products.map((Element,key) =>(
+                <ProductItemList {...Element} key={key}/>
             ))
 
         }            
