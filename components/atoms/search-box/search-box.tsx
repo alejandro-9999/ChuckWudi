@@ -12,7 +12,10 @@ const _SearchBox = tw.div`
   h-full
   w-full
   relative
+  
+  sm:pr-32
   sm:pl-11
+  xl:pr-0
   mt-3
   sm:mt-0
 `;
