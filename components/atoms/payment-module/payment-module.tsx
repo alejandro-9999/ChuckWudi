@@ -1,6 +1,22 @@
 
 import Counter from "../counter/counter";
-export default function PaymentModule() {
+import {  ProductCart} from "../../../Redux/slices/shopingcart.slice";
+import React from "react";
+interface paymentModule{
+  products:ProductCart[]
+}
+
+const  PaymentModule:React.FC<paymentModule> = (props:paymentModule) => {
+  const [total,setTotal] = React.useState(0);
+
+  React.useEffect(()=>{
+    let valor:number = 0;
+    
+    props.products?.map((Element)=>{
+      valor += Element.amount * Element.price;
+    });
+    setTotal(valor);
+  },[props.products])
   return (
     <div className="payment-module-body">
       <div className="payment-module-content">
@@ -8,7 +24,7 @@ export default function PaymentModule() {
           <h1>Total:</h1>
         </div>
         <div className="payment-total">
-          <a href="">$25.97</a>
+          <a href="#">${total}</a>
         </div>
         <div className="divider-payment">
         <hr />
@@ -23,3 +39,5 @@ export default function PaymentModule() {
     </div>
   );
 }
+
+export default PaymentModule;

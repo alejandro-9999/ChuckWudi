@@ -4,6 +4,8 @@ import IconStart from "../../../assets/icons/149220.svg";
 import { Product } from "../../../Redux/slices/products.slice";
 import tw from "tailwind-styled-components/dist/tailwind";
 import styled from "styled-components";
+import { useAppDispatch } from "../../../Redux/store.hooks";
+import { addProduct } from "../../../Redux/slices/shopingcart.slice";
 
 
 const _ProductCard  = tw.div`
@@ -93,8 +95,13 @@ const Price = tw.span`
   mx-2`;
 
 const ProductCard: React.FC<Product> = (props: Product) => {
+  const dispatch = useAppDispatch();
+  const handleAddProduct = () =>{
+    console.log("Salida");
+    dispatch(addProduct(props));
+  }
   return (
-    <_ProductCard>
+    <_ProductCard onClick={handleAddProduct}>
       <ProductCardHeader>
         <article>
           <ProductCardImage src={props.image} />

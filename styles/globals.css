@@ -90,7 +90,8 @@
 
 
 .button-payment{
-  width: 200px;
+  max-width: 200px;
+  min-width: 150px;
   height: 75px;
   
   
@@ -105,7 +106,7 @@
   border-bottom-left-radius: 25px;
   padding-right: 35px;
   @apply text-black;
-  @apply mt-0 sm:mt-10;
+  
 }
 
 .divider-payment{

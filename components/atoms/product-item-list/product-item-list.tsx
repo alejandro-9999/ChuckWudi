@@ -3,14 +3,19 @@ import ProductImage from "../../../assets/images/pexels-photo-675951.jpeg";
 import CategorieImage from '../../../assets/icons/701965.svg';
 import tw from "tailwind-styled-components/dist/tailwind";
 import styled from "styled-components";
+import { Product } from "../../../Redux/slices/products.slice";
+import { ProductCart } from "../../../Redux/slices/shopingcart.slice";
+import { useAppDispatch, useAppSelector } from "../../../Redux/store.hooks";
 
-
+import { removeFromCard } from "../../../Redux/slices/shopingcart.slice";
 
 const _BodyItemList = tw.div`
   mt-8
   grid 
   grid-cols-4
   items-center
+  hover:bg-delivery
+  rounded
 `;
 
 const ImageItemListBase = styled.div`
@@ -37,26 +42,34 @@ const PriceItemList = tw.div`
   font-light
 `;
 
-const ImageProduct = styled(Image)`
+const ImageProduct = styled.img`
   border-radius: 8px;
 `;
 
 
-export default function ProductItemList() {
+const  ProductItemList : React.FC<ProductCart>  =  (props:ProductCart) => {
+  const dispatch = useAppDispatch();
+  const RemoveProductCart = (id:number) =>{
+    dispatch(removeFromCard(id))
+  }
+
+
   return (
-    <_BodyItemList>
+    <_BodyItemList onClick={()=>RemoveProductCart(props.id)}>
       <ImageItemList>
-        <ImageProduct src={ProductImage} />
+        <ImageProduct  src={props.image} />
       </ImageItemList>
 
      
         <NameItemList>
-          <h1>1 X French Fries</h1>
+          <h1>{props.amount} X {props.name}</h1>
         </NameItemList>
       
         <PriceItemList>
-            <h1>$0.00</h1>
+            <h1>${props.amount * props.price}</h1>
         </PriceItemList> 
     </_BodyItemList>
   )
 }
+
+export default ProductItemList;
